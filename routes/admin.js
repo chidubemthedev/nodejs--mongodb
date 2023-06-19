@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { getAddProductPage, postAddProduct } = require("../controllers/products");
+const { getAddProductPage, postAddProduct, adminProductsPage } = require("../controllers/products");
 
 const router = express.Router();
 
@@ -10,7 +10,7 @@ router.get("/add-product", getAddProductPage);
 // /admin/add-product => POST
 router.post("/add-product", postAddProduct);
 
-// module.exports = router;
-// module.exports = products;
+
+router.get("/products", adminProductsPage);
 
 module.exports = router;
