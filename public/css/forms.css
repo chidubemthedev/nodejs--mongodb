@@ -38,3 +38,7 @@ button:active {
   color: #b548d7;
   transition: all 0.5s;
 }
+
+form {
+  display: inline;
+}
