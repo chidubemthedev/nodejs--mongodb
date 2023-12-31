@@ -4,7 +4,7 @@
     "title": "An Phone",
     "imageUrl": "",
     "description": "An iphone 15 pro max.",
-    "price": "1200"
+    "price": "12000"
   },
   {
     "id": "2",
@@ -40,12 +40,5 @@
     "imageUrl": "",
     "description": "128gb ssd for your laptop.",
     "price": "1000"
-  },
-  {
-    "title": "",
-    "imageUrl": "",
-    "description": "",
-    "price": "",
-    "id": "0.9319898361393579"
   }
 ]

@@ -6,6 +6,7 @@ const {
   adminProductsPage,
   getEditProduct,
   postEditProduct,
+  postDeleteProduct,
 } = require("../controllers/products");
 
 const router = express.Router();
@@ -21,5 +22,7 @@ router.get("/products", adminProductsPage);
 router.get("/edit-product/:productId", getEditProduct);
 
 router.post("/edit-product", postEditProduct);
+
+router.post("delete-product", postDeleteProduct);
 
 module.exports = router;
