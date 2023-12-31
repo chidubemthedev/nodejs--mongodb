@@ -8,10 +8,10 @@ exports.getAddProductPage = (req, res, next) => {
 };
 
 exports.postAddProduct = (req, res, next) => {
-  const title = req.body.title
-  const imageUrl = req.body.imageUrl
-  const price = req.body.price
-  const description = req.body.description
+  const title = req.body.title;
+  const imageUrl = req.body.imageUrl;
+  const price = req.body.price;
+  const description = req.body.description;
 
   const product = new Product(title, imageUrl, description, price);
   product.save();
@@ -20,23 +20,37 @@ exports.postAddProduct = (req, res, next) => {
 
 exports.getProducts = (req, res, next) => {
   Product.fetchAll((products) => {
-    res.render("shop/product-list", { prods: products, pageTitle: "Products", path: "/products" });
+    res.render("shop/product-list", {
+      prods: products,
+      pageTitle: "Products",
+      path: "/products",
+    });
   });
 };
 
 exports.getProduct = (req, res, next) => {
-  const prodId = req.params.productId
-  Product.findById(prodId, product => {
-    res.render("shop/product-details", { product: product, pageTitle: product.title, path: "/products" })
-  })
-}
+  const prodId = req.params.productId;
+  Product.findById(prodId, (product) => {
+    res.render("shop/product-details", {
+      product: product,
+      pageTitle: product.title,
+      path: "/products",
+    });
+  });
+};
 
 exports.index = (req, res, next) => {
   Product.fetchAll((products) => {
-    res.render("shop/index", { prods: products, pageTitle: "Home", path: "/"})
-  })
-}
+    res.render("shop/index", { prods: products, pageTitle: "Home", path: "/" });
+  });
+};
 
 exports.adminProductsPage = (req, res, next) => {
-  res.render("admin/products", {pageTitle: "Admin products page", path: "/admin/products"})
-}
+  Product.fetchAll((products) => {
+    res.render("admin/products", {
+      prods: products,
+      pageTitle: "Admin products page",
+      path: "/admin/products",
+    });
+  });
+};
