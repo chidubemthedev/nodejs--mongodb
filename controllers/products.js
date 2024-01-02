@@ -63,13 +63,15 @@ exports.postDeleteProduct = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
-  Product.fetchAll((products) => {
-    res.render("shop/product-list", {
-      prods: products,
-      pageTitle: "Products",
-      path: "/products",
-    });
-  });
+  Product.fetchAll()
+    .then(([rows, fieldData]) => {
+      res.render("shop/product-list", {
+        prods: rows,
+        pageTitle: "Products",
+        path: "/products",
+      });
+    })
+    .catch((err) => console.log(err));
 };
 
 exports.getProduct = (req, res, next) => {
@@ -84,17 +86,25 @@ exports.getProduct = (req, res, next) => {
 };
 
 exports.index = (req, res, next) => {
-  Product.fetchAll((products) => {
-    res.render("shop/index", { prods: products, pageTitle: "Home", path: "/" });
-  });
+  Product.fetchAll()
+    .then(([rows, fieldData]) => {
+      res.render("shop/index", {
+        prods: rows,
+        pageTitle: "Home",
+        path: "/",
+      });
+    })
+    .catch((err) => console.log(err));
 };
 
 exports.adminProductsPage = (req, res, next) => {
-  Product.fetchAll((products) => {
-    res.render("admin/products", {
-      prods: products,
-      pageTitle: "Admin products page",
-      path: "/admin/products",
-    });
-  });
+  Product.fetchAll()
+    .then(([rows, fieldData]) => {
+      res.render("admin/products", {
+        prods: rows,
+        pageTitle: "Admin products page",
+        path: "/admin/products",
+      });
+    })
+    .catch((err) => console.log(err));
 };
