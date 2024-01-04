@@ -4,6 +4,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const { get404 } = require("./controllers/404");
 
+const sequelize = require("./util/database");
+
 const app = express();
 
 app.set("view engine", "ejs");
@@ -20,4 +22,10 @@ app.use(shopRoutes);
 
 app.use(get404);
 
-app.listen(3000);
+sequelize
+  .sync()
+  .then((result) => {
+    // console.log(result);
+    app.listen(3000);
+  })
+  .catch((err) => console.log(err));
