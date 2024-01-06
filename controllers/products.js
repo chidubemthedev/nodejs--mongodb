@@ -108,10 +108,10 @@ exports.index = (req, res, next) => {
 };
 
 exports.adminProductsPage = (req, res, next) => {
-  Product.fetchAll()
-    .then(([rows, fieldData]) => {
+  Product.findAll()
+    .then((products) => {
       res.render("admin/products", {
-        prods: rows,
+        prods: products,
         pageTitle: "Admin products page",
         path: "/admin/products",
       });
