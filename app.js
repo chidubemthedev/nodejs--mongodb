@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const { get404 } = require("./controllers/404");
 
 const sequelize = require("./util/database");
+const Product = require("./models/product");
+const User = require("./models/user");
 
 const app = express();
 
@@ -21,6 +23,9 @@ app.use("/admin", adminRoutes);
 app.use(shopRoutes);
 
 app.use(get404);
+
+Product.belongsTo(User, { constraints: true, onDelete: "CASCADE" });
+User.hasMany(Product);
 
 sequelize
   .sync()
