@@ -83,6 +83,7 @@ exports.getProducts = (req, res, next) => {
 
 exports.getProduct = (req, res, next) => {
   const prodId = req.params.productId;
+  // product.findAll({ where: { id: prodId } });
   Product.findByPk(prodId)
     .then((product) => {
       res.render("shop/product-details", {
