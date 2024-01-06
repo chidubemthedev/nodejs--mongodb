@@ -21,7 +21,7 @@ exports.postAddProduct = (req, res, next) => {
     description: description,
   })
     .then((result) => {
-      console.log(result);
+      console.log("Item Added!");
     })
     .catch((err) => console.log(err));
 };
@@ -70,10 +70,10 @@ exports.postDeleteProduct = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
-  Product.fetchAll()
-    .then(([rows, fieldData]) => {
+  Product.findAll()
+    .then((products) => {
       res.render("shop/product-list", {
-        prods: rows,
+        prods: products,
         pageTitle: "Products",
         path: "/products",
       });
@@ -95,10 +95,10 @@ exports.getProduct = (req, res, next) => {
 };
 
 exports.index = (req, res, next) => {
-  Product.fetchAll()
-    .then(([rows, fieldData]) => {
+  Product.findAll()
+    .then((products) => {
       res.render("shop/index", {
-        prods: rows,
+        prods: products,
         pageTitle: "Home",
         path: "/",
       });
