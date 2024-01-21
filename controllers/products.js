@@ -95,19 +95,18 @@ exports.getProducts = (req, res, next) => {
     .catch((err) => console.log(err));
 };
 
-// exports.getProduct = (req, res, next) => {
-//   const prodId = req.params.productId;
-//   // product.findAll({ where: { id: prodId } });
-//   Product.findByPk(prodId)
-//     .then((product) => {
-//       res.render("shop/product-details", {
-//         product: product,
-//         pageTitle: product.title,
-//         path: "/products",
-//       });
-//     })
-//     .catch((err) => console.log(err));
-// };
+exports.getProduct = (req, res, next) => {
+  const prodId = req.params.productId;
+  Product.findById(prodId)
+    .then((product) => {
+      res.render("shop/product-details", {
+        product: product,
+        pageTitle: product.title,
+        path: "/products",
+      });
+    })
+    .catch((err) => console.log(err));
+};
 
 exports.index = (req, res, next) => {
   Product.fetchAll()
@@ -121,14 +120,14 @@ exports.index = (req, res, next) => {
     .catch((err) => console.log(err));
 };
 
-// exports.adminProductsPage = (req, res, next) => {
-//   Product.findAll()
-//     .then((products) => {
-//       res.render("admin/products", {
-//         prods: products,
-//         pageTitle: "Admin products page",
-//         path: "/admin/products",
-//       });
-//     })
-//     .catch((err) => console.log(err));
-// };
+exports.adminProductsPage = (req, res, next) => {
+  Product.fetchAll()
+    .then((products) => {
+      res.render("admin/products", {
+        prods: products,
+        pageTitle: "Admin products page",
+        path: "/admin/products",
+      });
+    })
+    .catch((err) => console.log(err));
+};

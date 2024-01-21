@@ -23,7 +23,6 @@ router.get("/", index);
 // router.get("/orders", getOrders);
 // router.post("/create-order", postOrder);
 router.get("/products", getProducts);
-
-// router.get("/products/:productId", getProduct);
+router.get("/products/:productId", getProduct);
 
 module.exports = router;
