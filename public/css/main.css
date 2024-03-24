@@ -217,3 +217,12 @@ form {
     display: none;
   }
 }
+
+.cart__item {
+  display: flex;
+  justify-content: space-between;
+  max-width: 70%;
+  padding: 0 20px;
+  margin: 0 auto;
+  align-items: center;
+}
