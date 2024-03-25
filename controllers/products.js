@@ -14,14 +14,13 @@ exports.postAddProduct = (req, res, next) => {
   const price = req.body.price;
   const description = req.body.description;
 
-  const product = new Product(
-    title,
-    price,
-    imageUrl,
-    description,
-    null,
-    req.user._id
-  );
+  const product = new Product({
+    title: title,
+    price: price,
+    description: description,
+    imageUrl: imageUrl,
+  });
+
   product
     .save()
     .then((result) => {
@@ -87,8 +86,9 @@ exports.postDeleteProduct = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
-  Product.fetchAll()
+  Product.find()
     .then((products) => {
+      console.log(products);
       res.render("shop/product-list", {
         prods: products,
         pageTitle: "Products",
@@ -112,7 +112,7 @@ exports.getProduct = (req, res, next) => {
 };
 
 exports.index = (req, res, next) => {
-  Product.fetchAll()
+  Product.find()
     .then((products) => {
       res.render("shop/index", {
         prods: products,
