@@ -16,7 +16,7 @@ const { checkout, postOrder, getOrders } = require("../controllers/checkout");
 const router = express.Router();
 
 router.get("/", index);
-// router.get("/cart", cartPage);
+router.get("/cart", cartPage);
 // router.post("/cart-delete-item", postCartDeleteProduct);
 router.post("/cart", postCart);
 // router.get("/checkout", checkout);
