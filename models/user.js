@@ -65,28 +65,6 @@ userSchema.methods.removeFromCart = function (productId) {
 
 module.exports = mongoose.model("User", userSchema);
 
-// const mongodb = require("mongodb");
-// const { getDb } = require("../util/database");
-// const { use } = require("../routes/admin");
-// class User {
-//   constructor(username, email, cart, id) {
-//     this.name = username;
-//     this.email = email;
-//     this.cart = cart; //{items: []}
-//     this._id = id;
-//   }
-
-//   save() {
-//     const db = getDb();
-//     return db
-//       .collection("users")
-//       .insertOne(this)
-//       .then(() => {
-//         console.log("User Created!");
-//       })
-//       .catch((err) => console.log(err));
-//   }
-
 //   addOrder() {
 //     const db = getDb();
 //     return this.getCart()
@@ -120,18 +98,3 @@ module.exports = mongoose.model("User", userSchema);
 //       .find({ "user._id": new mongodb.ObjectId(this._id) })
 //       .toArray();
 //   }
-
-//   static findById(userId) {
-//     const db = getDb();
-//     return db
-//       .collection("users")
-//       .findOne({ _id: new mongodb.ObjectId(userId) })
-//       .then((user) => {
-//         // console.log(user);
-//         return user;
-//       })
-//       .catch((err) => console.log(err));
-//   }
-// }
-
-// module.exports = User;

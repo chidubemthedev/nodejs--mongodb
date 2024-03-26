@@ -1,10 +1,29 @@
+const Order = require("../models/order");
+
 exports.checkout = (req, res, next) => {
   res.render("shop/checkout", { pageTitle: "Checkout", path: "/checkout" });
 };
 
 exports.postOrder = (req, res, next) => {
   req.user
-    .addOrder()
+    .populate("cart.items.productId")
+    .then((user) => {
+      const products = user.cart.items.map((product) => {
+        return {
+          quantity: product.quantity,
+          product: { ...product.productId._doc },
+        };
+      });
+
+      const order = new Order({
+        products: products,
+        user: {
+          name: req.user.name,
+          userId: req.user,
+        },
+      });
+      order.save();
+    })
     .then((result) => {
       res.redirect("/orders");
     })
