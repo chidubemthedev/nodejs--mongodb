@@ -1,7 +1,11 @@
 const Order = require("../models/order");
 
 exports.checkout = (req, res, next) => {
-  res.render("shop/checkout", { pageTitle: "Checkout", path: "/checkout" });
+  res.render("shop/checkout", {
+    pageTitle: "Checkout",
+    path: "/checkout",
+    isLoggedIn: req.isLoggedIn,
+  });
 };
 
 exports.postOrder = (req, res, next) => {
@@ -40,6 +44,7 @@ exports.getOrders = (req, res, next) => {
         pageTitle: "Your Orders",
         path: "/orders",
         orders: orders,
+        isLoggedIn: req.isLoggedIn,
       });
     })
     .catch((err) => console.log(err));

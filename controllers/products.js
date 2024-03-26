@@ -5,6 +5,7 @@ exports.getAddProductPage = (req, res, next) => {
     pageTitle: "Add Product",
     path: "/admin/add-product",
     editing: false,
+    isLoggedIn: req.isLoggedIn,
   });
 };
 
@@ -47,6 +48,7 @@ exports.getEditProduct = (req, res, next) => {
         path: "/admin/edit-product",
         editing: editMode,
         product: product,
+        isLoggedIn: req.isLoggedIn,
       });
     })
     .catch((err) => console.log(err));
@@ -95,6 +97,7 @@ exports.getProducts = (req, res, next) => {
         prods: products,
         pageTitle: "Products",
         path: "/products",
+        isLoggedIn: req.isLoggedIn,
       });
     })
     .catch((err) => console.log(err));
@@ -108,6 +111,7 @@ exports.getProduct = (req, res, next) => {
         product: product,
         pageTitle: product.title,
         path: "/products",
+        isLoggedIn: req.isLoggedIn,
       });
     })
     .catch((err) => console.log(err));
@@ -120,6 +124,7 @@ exports.index = (req, res, next) => {
         prods: products,
         pageTitle: "Home",
         path: "/",
+        isLoggedIn: req.isLoggedIn,
       });
     })
     .catch((err) => console.log(err));
@@ -132,6 +137,7 @@ exports.adminProductsPage = (req, res, next) => {
         prods: products,
         pageTitle: "Admin products page",
         path: "/admin/products",
+        isLoggedIn: req.isLoggedIn,
       });
     })
     .catch((err) => console.log(err));
