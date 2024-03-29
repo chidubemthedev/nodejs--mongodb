@@ -1,7 +1,7 @@
 const Product = require("../models/product");
 
 exports.cartPage = (req, res, next) => {
-  req.session.user
+  req.user
     .populate("cart.items.productId")
     .then((user) => {
       const products = user.cart.items;
@@ -17,7 +17,7 @@ exports.cartPage = (req, res, next) => {
 
 exports.postCartDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
-  req.session.user
+  req.user
     .removeFromCart(prodId)
     .then((result) => {
       res.redirect("/cart");
@@ -30,7 +30,7 @@ exports.postCart = (req, res, next) => {
 
   Product.findById(prodId)
     .then((product) => {
-      return req.session.user.addToCart(product);
+      return req.user.addToCart(product);
     })
     .then((result) => {
       console.log(result);

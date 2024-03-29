@@ -9,7 +9,7 @@ exports.checkout = (req, res, next) => {
 };
 
 exports.postOrder = (req, res, next) => {
-  req.session.user
+  req.user
     .populate("cart.items.productId")
     .then((user) => {
       const products = user.cart.items.map((product) => {
@@ -22,8 +22,8 @@ exports.postOrder = (req, res, next) => {
       const order = new Order({
         products: products,
         user: {
-          name: req.session.user.name,
-          userId: req.session.user,
+          name: req.user.name,
+          userId: req.user,
         },
       });
       order.save();
