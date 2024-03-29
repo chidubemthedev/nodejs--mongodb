@@ -31,19 +31,10 @@ app.use(
   session({
     secret: "elValentin0 dele cruZ",
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     store: store,
   })
 );
-
-app.use((req, res, next) => {
-  User.findById("6601557cde5718a95c2c421d")
-    .then((user) => {
-      req.user = user;
-      next();
-    })
-    .catch((err) => console.log(err));
-});
 
 app.use("/admin", adminRoutes);
 app.use(shopRoutes);

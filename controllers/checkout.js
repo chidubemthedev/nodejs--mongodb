@@ -4,12 +4,12 @@ exports.checkout = (req, res, next) => {
   res.render("shop/checkout", {
     pageTitle: "Checkout",
     path: "/checkout",
-    isLoggedIn: req.isLoggedIn,
+    isLoggedIn: req.session.isLoggedIn,
   });
 };
 
 exports.postOrder = (req, res, next) => {
-  req.user
+  req.session.user
     .populate("cart.items.productId")
     .then((user) => {
       const products = user.cart.items.map((product) => {
@@ -22,8 +22,8 @@ exports.postOrder = (req, res, next) => {
       const order = new Order({
         products: products,
         user: {
-          name: req.user.name,
-          userId: req.user,
+          name: req.session.user.name,
+          userId: req.session.user,
         },
       });
       order.save();
@@ -44,7 +44,7 @@ exports.getOrders = (req, res, next) => {
         pageTitle: "Your Orders",
         path: "/orders",
         orders: orders,
-        isLoggedIn: req.isLoggedIn,
+        isLoggedIn: req.session.isLoggedIn,
       });
     })
     .catch((err) => console.log(err));

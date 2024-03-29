@@ -1,7 +1,7 @@
 const Product = require("../models/product");
 
 exports.cartPage = (req, res, next) => {
-  req.user
+  req.session.user
     .populate("cart.items.productId")
     .then((user) => {
       const products = user.cart.items;
@@ -9,7 +9,7 @@ exports.cartPage = (req, res, next) => {
         pageTitle: "Your Cart",
         path: "/cart",
         products: products,
-        isLoggedIn: req.isLoggedIn,
+        isLoggedIn: req.session.isLoggedIn,
       });
     })
     .catch((err) => console.log(err));
@@ -17,7 +17,7 @@ exports.cartPage = (req, res, next) => {
 
 exports.postCartDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
-  req.user
+  req.session.user
     .removeFromCart(prodId)
     .then((result) => {
       res.redirect("/cart");
@@ -30,7 +30,7 @@ exports.postCart = (req, res, next) => {
 
   Product.findById(prodId)
     .then((product) => {
-      return req.user.addToCart(product);
+      return req.session.user.addToCart(product);
     })
     .then((result) => {
       console.log(result);
