@@ -2,12 +2,21 @@ const path = require("path");
 const mongoose = require("mongoose");
 const express = require("express");
 const session = require("express-session");
+const MongoDBStore = require("connect-mongodb-session")(session);
 const bodyParser = require("body-parser");
 
 const { get404 } = require("./controllers/404");
 const User = require("./models/user");
 
+const MONGODB_URI =
+  "mongodb+srv://shopcontroller:Janeal0y@nodeshop.gu8ivjw.mongodb.net/shop";
+
 const app = express();
+
+const store = new MongoDBStore({
+  uri: MONGODB_URI,
+  collection: "sessions",
+});
 
 app.set("view engine", "ejs");
 app.set("views", "views");
@@ -23,6 +32,7 @@ app.use(
     secret: "elValentin0 dele cruZ",
     resave: false,
     saveUninitialized: false,
+    store: store,
   })
 );
 
@@ -42,9 +52,7 @@ app.use(authRoutes);
 // app.use(get404);
 
 mongoose
-  .connect(
-    "mongodb+srv://shopcontroller:Janeal0y@nodeshop.gu8ivjw.mongodb.net/shop"
-  )
+  .connect(MONGODB_URI)
   .then((result) => {
     User.findOne().then((user) => {
       if (!user) {
