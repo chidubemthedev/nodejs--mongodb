@@ -1,8 +1,9 @@
 const path = require("path");
 const mongoose = require("mongoose");
-
 const express = require("express");
+const session = require("express-session");
 const bodyParser = require("body-parser");
+
 const { get404 } = require("./controllers/404");
 const User = require("./models/user");
 
@@ -15,8 +16,15 @@ const adminRoutes = require("./routes/admin");
 const authRoutes = require("./routes/auth");
 const shopRoutes = require("./routes/shop");
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(
+  session({
+    secret: "elValentin0 dele cruZ",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 app.use((req, res, next) => {
   User.findById("6601557cde5718a95c2c421d")
