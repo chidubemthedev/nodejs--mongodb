@@ -58,16 +58,6 @@ app.use(authRoutes);
 mongoose
   .connect(MONGODB_URI)
   .then((result) => {
-    User.findOne().then((user) => {
-      if (!user) {
-        const user = new User({
-          name: "Valentine",
-          email: "chidubemthedev@dev.me",
-          cart: { items: [] },
-        });
-        user.save();
-      }
-    });
     console.log("Connected!");
     app.listen(3000);
   })
