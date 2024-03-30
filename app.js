@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const express = require("express");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
-const bodyParser = require("body-parser");
 
 const { get404 } = require("./controllers/404");
 const User = require("./models/user");
