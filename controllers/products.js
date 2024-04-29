@@ -37,7 +37,6 @@ exports.index = (req, res, next) => {
         prods: products,
         pageTitle: "Home",
         path: "/",
-        isLoggedIn: req.session.isLoggedIn,
       });
     })
     .catch((err) => console.log(err));
