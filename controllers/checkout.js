@@ -4,7 +4,6 @@ exports.checkout = (req, res, next) => {
   res.render("shop/checkout", {
     pageTitle: "Checkout",
     path: "/checkout",
-    isLoggedIn: req.session.isLoggedIn,
   });
 };
 
@@ -44,7 +43,6 @@ exports.getOrders = (req, res, next) => {
         pageTitle: "Your Orders",
         path: "/orders",
         orders: orders,
-        isLoggedIn: req.session.isLoggedIn,
       });
     })
     .catch((err) => console.log(err));

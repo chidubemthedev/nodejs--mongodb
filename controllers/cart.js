@@ -9,7 +9,6 @@ exports.cartPage = (req, res, next) => {
         pageTitle: "Your Cart",
         path: "/cart",
         products: products,
-        isLoggedIn: req.session.isLoggedIn,
       });
     })
     .catch((err) => console.log(err));

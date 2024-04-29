@@ -10,7 +10,6 @@ exports.getProducts = (req, res, next) => {
         prods: products,
         pageTitle: "Products",
         path: "/products",
-        isLoggedIn: req.session.isLoggedIn,
       });
     })
     .catch((err) => console.log(err));
